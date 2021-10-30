@@ -1,8 +1,8 @@
 # AHPy
 
-**AHPy** is an implementation of the Analytic Hierarchy Process ([AHP](https://en.wikipedia.org/wiki/Analytic_hierarchy_process)), a method used to structure, synthesize and evaluate the elements of a decision problem. Developed by [Thomas Saaty](http://www.creativedecisions.org/about/ThomasLSaaty.php) in the 1970s, AHP's broad use in fields well beyond that of operational research is a testament to its simple yet powerful combination of psychology and mathematics.
+**AHPy** 是分析层次过程（[AHP](https://en.wikipedia.org/wiki/Analytic_hierarchy_process)）的实现，这是一种用于结构化、综合化和评估决策问题元素的方法。AHP由[Thomas Saaty](http://www.creativedecisions.org/about/ThomasLSaaty.php)在20世纪70年代开发，它在操作研究以外的领域的广泛使用证明了其简单而强大的心理学和数学的结合。
 
- AHPy attempts to provide a library that is not only simple to use, but also capable of intuitively working within the numerous conceptual frameworks to which the AHP can be applied. For this reason, general terms have been preferred to more specific ones within the programming interface.
+ AHPy试图提供一个库，它不仅使用简单，而且能够直观地在AHP可以应用的众多概念框架内工作。出于这个原因，在编程界面中，一般的术语比更具体的术语更受欢迎。
 
 #### Installing AHPy
 
@@ -57,7 +57,7 @@ The easiest way to learn how to use AHPy is to *see* it used, so this README beg
 
 ### Relative consumption of drinks in the United States
 
-This example is often used in Saaty's expositions of the AHP as a brief but clear demonstration of the method; it's what first opened my eyes to the broad usefulness of the AHP (as well as the wisdom of crowds!). The version I'm using here is from his 2008 article '[Decision making with the analytic hierarchy process](https://doi.org/10.1504/IJSSCI.2008.017590)'. If you're unfamiliar with the example, 30 participants were asked to compare the relative consumption of drinks in the United States. For instance, they believed that coffee was consumed *much* more than wine, but at the same rate as milk. The matrix derived from their answers was as follows:
+在Saaty对AHP的阐述中，这个例子经常被用来作为AHP方法的一个简短而清晰的演示；正是这个例子让我第一次看到了AHP的广泛用途（以及众人的智慧！）。我在这里使用的版本来自他2008年的文章"[用分析层次结构过程进行决策](https://doi.org/10.1504/IJSSCI.2008.017590)"。如果你对这个例子不熟悉，30名参与者被要求比较美国饮料的相对消费。例如，他们认为咖啡的消费量比葡萄酒多得多，但与牛奶的消费量相同。从他们的答案中得出的矩阵如下。
 
 ||Coffee|Wine|Tea|Beer|Soda|Milk|Water|
 |-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -69,14 +69,14 @@ This example is often used in Saaty's expositions of the AHP as a brief but clea
 |Milk|1|9|3|1|1/2|1|1/3|
 |Water|2|9|9|3|2|3|1|
 
-The table below shows the relative consumption of drinks as computed using the AHP, given this matrix, together with the *actual* relative consumption of drinks as obtained from U.S. Statistical Abstracts:
+下表显示了使用AHP计算出的饮料相对消费量，以及从美国统计摘要中获得的*实际*饮料相对消费量，给定的矩阵。
 
 |:exploding_head:|Coffee|Wine|Tea|Beer|Soda|Milk|Water|
 |-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |AHP|0.177|0.019|0.042|0.116|0.190|0.129|0.327|
 |Actual|0.180|0.010|0.040|0.120|0.180|0.140|0.330|
 
-We can recreate this analysis with AHPy using the following code:
+我们可以用下面的代码用AHPy重新创建这个分析。
 
 ```python
 >>> drink_comparisons = {('coffee', 'wine'): 9, ('coffee', 'tea'): 5, ('coffee', 'beer'): 2, ('coffee', 'soda'): 1,
@@ -98,9 +98,9 @@ We can recreate this analysis with AHPy using the following code:
 0.022
 ```
 
-1. First, we create a dictionary of pairwise comparisons using the values from the matrix above.<br>
-2. We then create a **Compare** object, initializing it with a unique name and the dictionary we just made. We also change the precision and random index so that the results match those provided by Saaty.<br>
-3. Finally, we print the Compare object's target weights and consistency ratio to see the results of our analysis.
+1. 首先，我们用上面矩阵中的值创建一个配对比较的字典。
+2. 然后我们创建一个**Compare**对象，用一个唯一的名字和刚才的字典来初始化它。我们还改变精度和随机索引，使结果与Saaty提供的结果一致。
+3. 最后，我们打印比较对象的目标权重和一致性比率，看看我们的分析结果。
 
 Brilliant!
 
