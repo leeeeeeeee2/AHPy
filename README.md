@@ -106,11 +106,11 @@ Brilliant!
 
 ### Choosing a leader
 
-This example can be found [in an appendix to the Wikipedia entry for AHP](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_-_leader_example). The names have been changed in a nod to [the original saying](https://www.grammarphobia.com/blog/2009/06/tom-dick-and-harry-part-2.html), but the input comparison values remain the same.
+这个例子可以在[维基百科的AHP条目的附录中]找到(https://en.wikipedia.org/wiki/Analytic_hierarchy_process_-_leader_example)。为了向[原来的说法](https://www.grammarphobia.com/blog/2009/06/tom-dick-and-harry-part-2.html)表示敬意，名称已经改变，但输入的比较值保持不变。
 
 #### N.B.
 
-You may notice that in some cases AHPy's results will not match those on the Wikipedia page. This is not an error in AHPy's calculations, but rather a result of [the method used to compute the values shown in the Wikipedia examples](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_–_car_example#Pairwise_comparing_the_criteria_with_respect_to_the_goal):
+你可能会注意到，在某些情况下，AHPy的结果会与维基百科页面上的结果不一致。这不是AHPy的计算错误，而是[用于计算维基百科例子中显示的数值的方法](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_-_car_example#Pairwise_comparing_the_criteria_with_respect_to_the_goal)的结果。
 
 > You can duplicate this analysis at this online demonstration site...**IMPORTANT: The demo site is designed for convenience, not accuracy. The priorities it returns may differ somewhat from those returned by rigorous AHP calculations.**
 
@@ -131,9 +131,9 @@ In this example, we'll be judging job candidates by their experience, education,
 			    ('Charisma', 'Age'): 5}
 ```
 
-Before moving on, it's important to note that the *order* of the elements that form the dictionaries' keys is meaningful. For example, using Saaty's scale, the comparison `('Experience', 'Education'): 4` means that "Experience is *moderately+ more important than* Education." 
+在继续之前，重要的是要注意，构成字典键的元素的*顺序是有意义的。例如，使用Saaty的尺度，比较"（'经验'，'教育'）：4 "意味着 "经验比*教育更*重要"。
 
-Now that we've created all of the necessary pairwise comparison dictionaries, we'll create their corresponding Compare objects and use the dictionaries as input:
+现在我们已经创建了所有必要的成对比较字典，我们将创建它们相应的比较对象，并使用字典作为输入。
 
 ```python
 >>> experience = ahpy.Compare('Experience', experience_comparisons, precision=3, random_index='saaty')
@@ -143,7 +143,7 @@ Now that we've created all of the necessary pairwise comparison dictionaries, we
 >>> criteria = ahpy.Compare('Criteria', criteria_comparisons, precision=3, random_index='saaty')
 ```
 
-Notice that the names of the Experience, Education, Charisma and Age objects are repeated in the `criteria_comparisons` dictionary above. This is necessary in order to properly link the Compare objects together into a hierarchy, as shown next.
+请注意，在上面的`criteria_comparisons`字典中，经验、教育、魅力和年龄对象的名称是重复的。这是必要的，以便正确地将比较对象连接成一个层次结构，如下所示。
 
 In the final step, we need to link the Compare objects together into a hierarchy, such that Criteria is the *parent* object and the other objects form its *children*:
 
@@ -158,7 +158,7 @@ Now that the hierarchy represents the decision problem, we can print the target 
 {'Nell': 0.493, 'Moll': 0.358, 'Sue': 0.15}
 ```
 
-We can also print the local and global weights of the elements within any of the other Compare objects, as well as the consistency ratio of their comparisons:
+我们还可以打印任何其他比较对象中的元素的局部和全局权重，以及它们的比较的一致性比率。
 
 ```python
 >>> print(experience.local_weights)
@@ -184,7 +184,7 @@ The global and local weights of the Compare objects themselves are likewise avai
 0.127
 ```
 
-Calling `report()` on a Compare object provides a standard way to learn information about the object. In the code below, the variable `report` contains a [Python dictionary](#comparereport) of important information, while the `show=True` argument prints the same information to the console in JSON format:
+在一个比较对象上调用`report()`提供了一个标准的方法来了解该对象的信息。在下面的代码中，变量`report`包含一个[Python字典](#comparereport)的重要信息，而`show=True`参数则以JSON格式将同样的信息打印到控制台。
 
 ```python
 >>> report = criteria.report(show=True)
@@ -218,11 +218,11 @@ Calling `report()` on a Compare object provides a standard way to learn informat
 
 ### Purchasing a vehicle
 
-This example can also be found [in an appendix to the Wikipedia entry for AHP](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_–_car_example). Like before, in some cases AHPy's results will not match those on the Wikipedia page, even though the input comparison values are identical. To reiterate, this is due to a difference in methods, not an error in AHPy.
+这个例子也可以在[维基百科的AHP条目的附录中找到](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_-_car_example)。像以前一样，在某些情况下，AHPy的结果会与维基百科上的结果不一致，即使输入的比较值是相同的。重申一下，这是由于方法的不同，而不是AHPy的错误。
 
-In this example, we'll be choosing a vehicle to purchase based on its cost, safety, style and capacity. Cost will further depend on a combination of the vehicle's purchase price, fuel costs, maintenance costs and resale value; capacity will depend on a combination of the vehicle's cargo and passenger capacity.
+在这个例子中，我们将根据成本、安全、风格和容量来选择要购买的车辆。成本将进一步取决于车辆的购买价格、燃料成本、维护成本和转售价值的组合；容量将取决于车辆的货物和乘客容量的组合。
 
-First, we compare the high-level criteria to one another:
+首先，我们将高层次的标准相互比较。
 
 ```python
 >>> criteria_comparisons = {('Cost', 'Safety'): 3, ('Cost', 'Style'): 7, ('Cost', 'Capacity'): 3,
@@ -230,7 +230,7 @@ First, we compare the high-level criteria to one another:
 			    ('Style', 'Capacity'): 1/7}
 ```
 
-If we create a Compare object for the criteria, we can view its report:
+如果我们为标准创建一个比较对象，我们可以查看其报告。
 
 ```python
 >>> criteria = ahpy.Compare('Criteria', criteria_comparisons, precision=3)
@@ -278,7 +278,7 @@ Next, we compare the *sub*criteria of Cost to one another...
 >>> capacity_comparisons = {('Cargo', 'Passenger'): 1/5}
 ```
 
-We also need to compare each of the potential vehicles to the others, given each criterion. We'll begin by building a list of all possible two-vehicle combinations:
+我们还需要在每个标准下，将每个潜在的车辆与其他车辆进行比较。我们将首先建立一个所有可能的两车组合的列表。
 
 ```python
 >>> import itertools
@@ -288,7 +288,7 @@ We also need to compare each of the potential vehicles to the others, given each
 [('Accord Sedan', 'Accord Hybrid'), ('Accord Sedan', 'Pilot'), ('Accord Sedan', 'CR-V'), ('Accord Sedan', 'Element'), ('Accord Sedan', 'Odyssey'), ('Accord Hybrid', 'Pilot'), ('Accord Hybrid', 'CR-V'), ('Accord Hybrid', 'Element'), ('Accord Hybrid', 'Odyssey'), ('Pilot', 'CR-V'), ('Pilot', 'Element'), ('Pilot', 'Odyssey'), ('CR-V', 'Element'), ('CR-V', 'Odyssey'), ('Element', 'Odyssey')]
 ```
 
-Then we can simply zip together the vehicle pairs and their pairwise comparison values for each criterion:
+然后，我们可以简单地将车辆对和它们对每个标准的比较值拉在一起。
 
 ```python
 >>> price_values = (9, 9, 1, 1/2, 5, 1, 1/9, 1/9, 1/7, 1/9, 1/9, 1/7, 1/2, 5, 6)
@@ -333,7 +333,7 @@ Now that we've created all of the necessary pairwise comparison dictionaries, we
 >>> cargo = ahpy.Compare('Cargo', cargo_comparisons, precision=3)
 ```
 
-The final step is to link all of the Compare objects into a hierarchy. First, we'll make the Price, Fuel, Maintenance and Resale objects the children of the Cost object...
+最后一步是将所有的比较对象连接成一个层次结构。首先，我们将使价格、燃料、维修和转售对象成为成本对象的子对象......
 
 ```python
 >>> cost.add_children([price, fuel, maintenance, resale])
@@ -351,14 +351,14 @@ The final step is to link all of the Compare objects into a hierarchy. First, we
 >>> criteria.add_children([cost, safety, style, capacity])
 ```
 
-Now that the hierarchy represents the decision problem, we can print the target weights of the *highest level* Criteria object to see the results of the analysis:
+现在，层次结构代表了决策问题，我们可以打印*最高级别*标准对象的目标权重，以查看分析结果。
 
 ```python
 >>> print(criteria.target_weights)
 {'Odyssey': 0.219, 'Accord Sedan': 0.215, 'CR-V': 0.167, 'Accord Hybrid': 0.15, 'Element': 0.144, 'Pilot': 0.106}
 ```
 
-For detailed information about any of the Compare objects in the hierarchy, we can call that object's `report()` with the `verbose=True` argument:
+对于层次结构中任何一个比较对象的详细信息，我们可以调用该对象的`report()`，参数为`verbose=True`。
 
 ```python
 >>> report = criteria.report(show=True, verbose=True)
@@ -421,7 +421,7 @@ For detailed information about any of the Compare objects in the hierarchy, we c
 }
 ```
 
-Calling `report(show=True, verbose=True)` on Compare objects at lower levels of the hierarchy will provide different information, depending on the level they're in:
+在层次结构较低的比较对象上调用`report(show=True, verbose=True)`会提供不同的信息，这取决于它们所处的层次。
 
 ```python
 >>> report = cost.report(show=True, verbose=True)
@@ -536,7 +536,7 @@ Calling `report(show=True, verbose=True)` on Compare objects at lower levels of 
 }
 ```
 
-Finally, calling `report(complete=True)` on any Compare object in the hierarchy will return a dictionary containing a report for *every* Compare object in the hierarchy, with the keys of the dictionary being the names of the Compare objects:
+最后，在层次结构中的任何一个比较对象上调用`report(complete=True)`将返回一个字典，其中包含层次结构中*每个*比较对象的报告，字典的键是比较对象的名称。
 
 ```python
 >>> complete_report = cargo.report(complete=True)
@@ -564,11 +564,12 @@ We could also print all of the reports to the console with the `show=True` argum
 
 ### Purchasing a vehicle reprised: normalized weights and the Compose class
 
-After reading through the explanation of the [vehicle decision problem on Wikipedia](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_–_car_example), you may have wondered whether the data used to represent purely numeric criteria (such as passenger capacity) could be used *directly* when comparing the vehicles to one another, rather than requiring tranformation into judgments of "intensity." In this example, we'll solve the same decision problem as before, except now we'll normalize the measured values for passenger capacity, fuel costs, resale value and cargo capacity in order to arrive at a different set of weights for these criteria.
+在读完[维基百科上的车辆决策问题](https://en.wikipedia.org/wiki/Analytic_hierarchy_process_-_car_example)的解释后，你可能会想，用于表示纯数字标准（如乘客容量）的数据是否可以在相互比较车辆时*直接使用，而不是要求转变成 "强度 "的判断。在这个例子中，我们将解决与之前相同的决策问题，只是现在我们将对乘客容量、燃料成本、转售价值和货物容量的测量值进行标准化处理，以便为这些标准得出一套不同的权重。
 
-We'll also use a **Compose** object to structure the decision problem. The Compose object allows us to work with an abstract representation of the problem hierarchy, rather than build it dynamically with code, which is valuable when we're not using AHPy in an interactive setting. To use the Compose object, we'll need to first add the comparison information, then the hierarchy, *in that order*. But more on that later.
+我们还将使用一个**组合**对象来构建决策问题。Compose对象允许我们使用问题层次的抽象表示，而不是用代码动态地建立它，当我们不在交互式环境中使用AHPy时，这很有价值。要使用Compose对象，我们需要首先添加比较信息，然后是层次结构，*依次为*。但后面会有更多关于这个问题的内容。
 
-Using the list of vehicles from the previous example, we'll first zip together the vehicles and their measured values, then create a Compare object for each of our normalized criteria:
+使用前面例子中的车辆列表，我们首先将车辆和它们的测量值压缩在一起，然后为每个规范化的标准创建一个比较对象。
+
 
 ```python
 >>> passenger_measured_values = (5, 5, 8, 5, 4, 8)
@@ -591,7 +592,7 @@ Using the list of vehicles from the previous example, we'll first zip together t
 >>> cargo_normalized = ahp.Compare('Cargo', cargo_data, precision=3)
 ```
 
-Let's print the normalized local weights of the new Passenger object to compare them to the local weights in the previous example:
+让我们打印一下新的乘客对象的归一化局部权重，以便与前面例子中的局部权重进行比较。
 
 ```python
 >>> print(passenger_normalized.local_weights)
@@ -601,9 +602,9 @@ Let's print the normalized local weights of the new Passenger object to compare 
 {'Accord Sedan': 0.493, 'Accord Hybrid': 0.197, 'Odyssey': 0.113, 'Element': 0.091, 'CR-V': 0.057, 'Pilot': 0.049}
 ```
 
-When we use the measured values directly, we see that the rankings for the vehicles are different than they were before. Whether this will affect the *synthesized* rankings of the target variables remains to be seen, however.
+当我们直接使用测量值时，我们看到车辆的排名与之前不同。然而，这是否会影响目标变量的*合成*排名，还有待观察。
 
-We next create a Compose object and begin to add the comparison information:
+我们接下来创建一个组合对象并开始添加比较信息。
 
 ```python
 >>> compose = ahpy.Compose()
@@ -611,7 +612,7 @@ We next create a Compose object and begin to add the comparison information:
 >>> compose.add_comparisons([passenger_normalized, fuel_normalized, resale_normalized, cargo_normalized])
 ```
 
-We can add comparison information to the Compose object in a few different ways. As shown above, we can provide a list of Compare objects; we can also provide them one at a time or stored in a tuple. Using Compare objects from our previous example:
+我们可以通过几种不同的方式将比较信息添加到Compose对象中。如上所示，我们可以提供一个比较对象的列表；我们也可以一次提供一个，或者存储在一个元组中。使用我们前面例子中的比较对象。
 
 ```python
 >>> compose.add_comparisons(cost)
@@ -619,7 +620,7 @@ We can add comparison information to the Compose object in a few different ways.
 >>> compose.add_comparisons((safety, style, capacity))
 ```
 
-We can even treat the Compose object like a Compare object and add the data directly. Again using code from the previous example:
+我们甚至可以把Compose对象当作Compare对象，直接添加数据。再次使用前面例子中的代码。
 
 ```python
 >>> compose.add_comparisons('Price', price_comparisons, precision=3)
@@ -632,7 +633,7 @@ Finally, we can provide an ordered list or tuple containing the data needed to c
 >>> compose.add_comparisons(comparisons)
 ```
 
-Now that all of the comparison information has been added, we next need to create the hierarchy and add it to the Compose object. A hierarchy is simply a dictionary in which the keys are the names of *parent* Compare objects and the values are lists of the names of their *children*:
+现在，所有的比较信息都已被添加，我们接下来需要创建层次结构并将其添加到组合对象中。层次结构是一个简单的字典，其中的键是*父*比较对象的名称，值是其*子*的名称列表。
 
 ```python
 >>> hierarchy = {'Criteria': ['Cost', 'Safety', 'Style', 'Capacity'],
@@ -642,9 +643,9 @@ Now that all of the comparison information has been added, we next need to creat
 >>> compose.add_hierarchy(hierarchy)
 ```
 
-With these two steps complete, we can now view the synthesized results of the analysis.
+完成这两个步骤后，我们现在可以查看分析的综合结果。
 
-We view a report for a Compose object in the same way we do for a Compare object. The only difference is that the Compose object displays a complete report by default; in order to view the report of a single Compare object in the hierarchy, we need to specify its name:
+我们查看合成对象的报告的方式与查看比较对象的方式相同。唯一不同的是，合成对象默认显示一个完整的报告；为了查看层次结构中单个比较对象的报告，我们需要指定其名称。
 
 ```python
 >>> criteria_report = compose.report('Criteria', show=True)
@@ -678,7 +679,7 @@ We view a report for a Compose object in the same way we do for a Compare object
 }
 ```
 
-We can access the public properties of the comparison information we've added to the Compose object using either dot or bracket notation:
+我们可以使用点或括号符号来访问我们添加到Compose对象中的比较信息的公共属性。
 
 ```python
 >>> print(compose.Criteria.target_weights)
@@ -688,7 +689,7 @@ We can access the public properties of the comparison information we've added to
 {'CR-V': 0.188, 'Accord Sedan': 0.177, 'Element': 0.164, 'Odyssey': 0.164, 'Accord Hybrid': 0.157, 'Pilot': 0.15}
 ```
 
-We can see that normalizing the numeric criteria leads to a slightly different set of target weights, though the Odyssey and the Accord Sedan remain the top two vehicles to consider for purchase.
+我们可以看到，将数字标准归一化会导致一组略有不同的目标权重，尽管奥德赛和雅阁轿车仍然是考虑购买的前两款车。
 
 ## Details
 
